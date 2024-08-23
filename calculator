@@ -1,0 +1,21 @@
+class Calculator:
+    def add(self, x, y):
+        return x + y
+
+    def subtract(self, x, y):
+        return x - y
+
+    def multiply(self, x, y):
+        return x * y
+
+    def divide(self, x, y):
+        if y == 0:
+            raise ValueError("Cannot divide by zero")
+        else:
+            return x / y
+
+calculator = Calculator()
+print(calculator.add(5, 9))
+print(calculator.subtract(4, 1))
+print(calculator.multiply(7, 8))
+print(calculator.divide(8, 2))
