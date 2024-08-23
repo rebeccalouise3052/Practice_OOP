@@ -1,0 +1,42 @@
+class Bank:
+    def __init__(self):
+        self.customers = {}
+
+    def create_account(self, account_number, initial_balance=0):
+        if account_number in self.customers:
+            print("Account already exists")
+        else:
+            self.customers[account_number] = initial_balance
+            print("Account created successfully")
+
+    def make_deposit(self, account_number, amount):
+        if account_number in self.customers:
+            self.customers[account_number] += amount
+            print("Deposit successful")
+        else:
+            print("Account does not exist")
+
+    def make_withdrawal(self, account_number, amount):
+        if account_number in self.customers:
+            if self.customers[account_number] >= amount:
+                self.customers[account_number] -= amount
+                print("Withdrawal Successful")
+            else:
+                print("Insuficcient Funds")
+        else:
+            print("Account does not exist")
+
+    def check_balance(self, account_number):
+        if account_number in self.customers:
+            balance = self.customers[account_number]
+            print(f"Account balance: £{balance:.2f}")
+        else:
+            print("Account does not exist")
+
+bank = Bank()
+bank.create_account("NW123", 100)
+bank.check_balance("NW123")
+bank.make_deposit("NW123", 50)
+bank.check_balance("NW123")
+bank.make_withdrawal("NW123", 30)
+bank.check_balance("NW123")
