@@ -1,0 +1,26 @@
+from datetime import date, datetime
+
+class Person:
+    def __init__(self, name, country, dob):
+        self.name = name
+        self.country = country
+
+        try:
+            self.dob = datetime.strptime(dob, "%Y-%m-%d").date()
+        except ValueError:
+            raise ValueError("Date of birth must be in the format YYYY-MM-DD")
+
+    def get_age(self):
+        today = date.today()
+
+        age = today.year - self.dob.year
+
+        if (today.month, today.day) < (self.dob.month, self.dob.day):
+            age -= 1
+
+        return age
+
+person = Person("Brody", "UK", "2000-03-25")
+# person2 = Person("Rebecca", "UK", "17-05-2000")
+
+print(f"{person.name} is {person.get_age()} years old.")
